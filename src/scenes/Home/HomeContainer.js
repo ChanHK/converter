@@ -6,6 +6,8 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 
 export default class HomeContainer extends Component {
@@ -52,56 +54,62 @@ export default class HomeContainer extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Image
-          style={styles.logostyle}
-          source={require('../../img/logo.png')}
-        />
-        <View style={{paddingTop: 50}}>
-          <TextInput
-            style={styles.textInput}
-            keyboardType="numeric"
-            placeholder={'30'}
-            onChangeText={value => this.onChangeText(value)}
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={styles.container}>
+          <Image
+            style={styles.logostyle}
+            source={require('../../img/logo.png')}
           />
-        </View>
+          <View style={{paddingTop: 50}}>
+            <TextInput
+              style={styles.textInput}
+              keyboardType="numeric"
+              placeholder={'30'}
+              onChangeText={value => this.onChangeText(value)}
+            />
+          </View>
 
-        <View style={{paddingTop: 100}}>
-          <TextInput
-            style={styles.textInput}
-            keyboardType="numeric"
-            editable={false}
-            value={this.state.kilogramOutput}
-          />
-        </View>
+          <View style={{paddingTop: 100}}>
+            <TextInput
+              style={styles.textInput}
+              keyboardType="numeric"
+              editable={false}
+              value={this.state.kilogramOutput}
+            />
+          </View>
 
-        <View style={styles.buttonView}>
-          <TouchableOpacity
-            style={{
-              backgroundColor: this.state.choosePounds ? '#BC8D55' : '#998989',
-              borderRadius: 8,
-              width: 155,
-              height: 43,
-              alignSelf: 'center',
-              justifyContent: 'center',
-            }}
-            onPress={this.poundButtonPressed}>
-            <Text style={styles.buttonText}>POUNDS</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              backgroundColor: this.state.choosePounds ? '#998989':'#BC8D55',
-              borderRadius: 8,
-              width: 155,
-              height: 43,
-              alignSelf: 'center',
-              justifyContent: 'center',
-            }}
-            onPress={this.miliButtonPressed}>
-            <Text style={styles.buttonText}>MILIGRAMS</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonView}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: this.state.choosePounds
+                  ? '#BC8D55'
+                  : '#998989',
+                borderRadius: 8,
+                width: 155,
+                height: 43,
+                alignSelf: 'center',
+                justifyContent: 'center',
+              }}
+              onPress={this.poundButtonPressed}>
+              <Text style={styles.buttonText}>POUNDS</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                backgroundColor: this.state.choosePounds
+                  ? '#998989'
+                  : '#BC8D55',
+                borderRadius: 8,
+                width: 155,
+                height: 43,
+                alignSelf: 'center',
+                justifyContent: 'center',
+              }}
+              onPress={this.miliButtonPressed}>
+              <Text style={styles.buttonText}>MILIGRAMS</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+        </TouchableWithoutFeedback>
     );
   }
 }
